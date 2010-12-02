@@ -1,4 +1,8 @@
 Rails3Routing::Application.routes.draw do
+  namespace :admin do
+    resources :posts
+  end
+
   resources :posts do
     resources :comments
 
