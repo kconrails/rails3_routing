@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(params[:comment])
 
     if @comment.save
-      redirect_to(@comment, :notice => 'Comment was successfully created.')
+      redirect_to([@post, @comment], :notice => 'Comment was successfully created.')
     else
       render :action => "new"
     end
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
 
     if @comment.update_attributes(params[:comment])
-      redirect_to(@comment, :notice => 'Comment was successfully updated.')
+      redirect_to([@post, @comment], :notice => 'Comment was successfully updated.')
     else
       render :action => "edit"
     end
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
     @comment.destroy
 
-    redirect_to(comments_url)
+    redirect_to(post_comments_url)
   end
   
   protected
